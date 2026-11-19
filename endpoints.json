@@ -1,0 +1,493 @@
+{
+  "schemaVersion": 1,
+  "platform": "tiktok-shop",
+  "platformName": "TikTok Shop",
+  "baseUrl": "https://api.socq.ai",
+  "creditUsd": 0.005,
+  "endpoints": [
+    {
+      "publicId": "tiktok-shop/search",
+      "name": "TikTok Shop Search API",
+      "description": "Search public TikTok Shop products by keyword and market region, returning normalized product, seller, price, media, rating, review, and sold-count fields.",
+      "method": "POST",
+      "path": "/v1/tiktok-shop/search",
+      "payload": "payloads/search.json",
+      "launchedAt": "2026-07-20",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 100,
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/tiktok-shop/search",
+      "landingUrl": "https://socq.ai/apis/tiktok-shop/search",
+      "required": [
+        "query"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Search query."
+          },
+          "region": {
+            "type": "string",
+            "minLength": 1
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2000
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    },
+    {
+      "publicId": "tiktok-shop/products",
+      "name": "TikTok Shop Products API",
+      "description": "Collect public products from one TikTok Shop store URL, returning identity, prices, images, seller context, ratings, reviews, and sold counts as normalized records.",
+      "method": "POST",
+      "path": "/v1/tiktok-shop/products",
+      "payload": "payloads/products.json",
+      "launchedAt": "2026-07-20",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 100,
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/tiktok-shop/products",
+      "landingUrl": "https://socq.ai/apis/tiktok-shop/products",
+      "required": [
+        "url"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "region": {
+            "type": "string",
+            "minLength": 1
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2000
+          },
+          "sort_by": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A public content or product URL."
+          }
+        },
+        "required": [
+          "url"
+        ]
+      }
+    },
+    {
+      "publicId": "tiktok-shop/product",
+      "name": "TikTok Shop Product API",
+      "description": "Retrieve one public TikTok Shop product from a PDP URL, returning normalized product identity, seller, price, visible commerce signals, media, categories, and SKU data.",
+      "method": "POST",
+      "path": "/v1/tiktok-shop/product",
+      "payload": "payloads/product.json",
+      "launchedAt": "2026-07-20",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 1,
+        "estimateInputField": "url",
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/tiktok-shop/product",
+      "landingUrl": "https://socq.ai/apis/tiktok-shop/product",
+      "required": [
+        "url"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "region": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "US"
+            ],
+            "default": "US",
+            "description": "Currently available for the US region only. Other regions are unavailable for this endpoint."
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A public content or product URL."
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "description": "This endpoint currently supports US only. Omit region or set it to US; other regions are rejected before task creation."
+      }
+    },
+    {
+      "publicId": "tiktok-shop/product-reviews",
+      "name": "TikTok Shop Product Reviews API",
+      "description": "Collect public reviews for one TikTok Shop product from its PDP URL, returning normalized review text, ratings, reviewer details, images, SKU context, and purchase-status fields.",
+      "method": "POST",
+      "path": "/v1/tiktok-shop/product-reviews",
+      "payload": "payloads/product-reviews.json",
+      "launchedAt": "2026-07-20",
+      "price": "0.3 credits ($0.0015) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.3,
+        "estimateResultCount": 100,
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/tiktok-shop/product-reviews",
+      "landingUrl": "https://socq.ai/apis/tiktok-shop/product-reviews",
+      "required": [
+        "url"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "region": {
+            "type": "string",
+            "minLength": 1
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2000
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A public content or product URL."
+          }
+        },
+        "required": [
+          "url"
+        ]
+      }
+    },
+    {
+      "publicId": "tiktok-shop/user-showcase",
+      "name": "TikTok Shop User Showcase API",
+      "description": "Collect products displayed in one public TikTok user's Shop showcase, returning normalized product, seller, price, media, rating, review, and sold-count fields.",
+      "method": "POST",
+      "path": "/v1/tiktok-shop/user-showcase",
+      "payload": "payloads/user-showcase.json",
+      "launchedAt": "2026-07-20",
+      "price": "0.7 credits ($0.0035) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.7,
+        "estimateResultCount": 100,
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/tiktok-shop/user-showcase",
+      "landingUrl": "https://socq.ai/apis/tiktok-shop/user-showcase",
+      "required": [
+        "username"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "region": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "US"
+            ],
+            "default": "US",
+            "description": "Currently available for the US region only. Other regions are unavailable for this endpoint."
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 20,
+            "maximum": 2000
+          },
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A public account username."
+          }
+        },
+        "required": [
+          "username"
+        ],
+        "description": "This endpoint currently supports US only. Omit region or set it to US; other regions are rejected before task creation. results_limit must be 20 to 2000."
+      }
+    },
+    {
+      "publicId": "tiktok-shop/hot-products",
+      "name": "TikTok Shop Hot Products API",
+      "description": "Collect the hot-selling products of a TikTok Shop market with price, units sold, rating and shop.",
+      "method": "POST",
+      "path": "/v1/tiktok-shop/hot-products",
+      "payload": "payloads/hot-products.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.5 credits ($0.0025) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.5,
+        "estimateResultCount": 50,
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/tiktok-shop/hot-products",
+      "landingUrl": "https://socq.ai/apis/tiktok-shop/hot-products",
+      "required": [
+        "region"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "region": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "ID",
+              "JP",
+              "MX",
+              "MY",
+              "PH",
+              "SG",
+              "TH",
+              "VN"
+            ],
+            "description": "Country or region code of the TikTok Shop market."
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 200,
+            "default": 50
+          }
+        },
+        "required": [
+          "region"
+        ],
+        "description": "Provide a market in region: ID, JP, MX, MY, PH, SG, TH or VN. results_limit defaults to 50 and accepts integers from 1 to 200. Products come back in the order TikTok Shop ranks them."
+      }
+    },
+    {
+      "publicId": "tiktok-shop/categories",
+      "name": "TikTok Shop Categories API",
+      "description": "Get the full product category tree of a TikTok Shop market with IDs, levels and parents.",
+      "method": "POST",
+      "path": "/v1/tiktok-shop/categories",
+      "payload": "payloads/categories.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.5 credits ($0.0025) per call",
+      "billing": {
+        "baseCredits": 0.5,
+        "mode": "fixed"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/tiktok-shop/categories",
+      "landingUrl": "https://socq.ai/apis/tiktok-shop/categories",
+      "required": [],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "region": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "ID",
+              "JP",
+              "MX",
+              "MY",
+              "PH",
+              "SG",
+              "TH",
+              "US",
+              "VN"
+            ],
+            "description": "Country or region code of the TikTok Shop market.",
+            "default": "US"
+          }
+        },
+        "required": [],
+        "description": "region is optional and defaults to US. Each call returns the full category tree of that market, one row per category, with its level and parent so the tree can be rebuilt."
+      }
+    },
+    {
+      "publicId": "tiktok-shop/category-products",
+      "name": "TikTok Shop Category Products API",
+      "description": "Browse the products of a TikTok Shop category with price, units sold, rating, reviews and shop.",
+      "method": "POST",
+      "path": "/v1/tiktok-shop/category-products",
+      "payload": "payloads/category-products.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.5 credits ($0.0025) per result",
+      "billing": {
+        "baseCredits": 0,
+        "mode": "base_plus_result",
+        "resultUnitSize": 1,
+        "resultUnitCredits": 0.5,
+        "estimateResultCount": 30,
+        "emptyResultPolicy": "base_only"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/tiktok-shop/category-products",
+      "landingUrl": "https://socq.ai/apis/tiktok-shop/category-products",
+      "required": [
+        "category_id"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "category_id": {
+            "type": "string",
+            "pattern": "^[0-9]{1,20}$",
+            "description": "Numeric category ID, as returned by TikTok Shop Categories."
+          },
+          "region": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "ID",
+              "JP",
+              "MX",
+              "MY",
+              "PH",
+              "SG",
+              "TH",
+              "US",
+              "VN"
+            ],
+            "description": "Country or region code of the TikTok Shop market.",
+            "default": "US"
+          },
+          "results_limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 500,
+            "default": 30
+          }
+        },
+        "required": [
+          "category_id"
+        ],
+        "description": "Provide a category ID from TikTok Shop Categories in category_id. region defaults to US. results_limit defaults to 30 and accepts integers from 1 to 500."
+      }
+    },
+    {
+      "publicId": "tiktok-shop/search-suggestions",
+      "name": "TikTok Shop Search Suggestions API",
+      "description": "Get the search completions TikTok Shop suggests for the start of a shopping query.",
+      "method": "POST",
+      "path": "/v1/tiktok-shop/search-suggestions",
+      "payload": "payloads/search-suggestions.json",
+      "launchedAt": "2026-11-17",
+      "price": "0.5 credits ($0.0025) per call",
+      "billing": {
+        "baseCredits": 0.5,
+        "mode": "fixed"
+      },
+      "docsUrl": "https://docs.socq.ai/api-manual/tiktok-shop/search-suggestions",
+      "landingUrl": "https://socq.ai/apis/tiktok-shop/search-suggestions",
+      "required": [
+        "query"
+      ],
+      "requiredAnyOf": [],
+      "mutuallyExclusive": [],
+      "requestSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "callback_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Search query."
+          },
+          "region": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "ID",
+              "JP",
+              "MX",
+              "MY",
+              "PH",
+              "SG",
+              "TH",
+              "US",
+              "VN"
+            ],
+            "description": "Country or region code of the TikTok Shop market.",
+            "default": "US"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "description": "Provide the start of a shopping search in query. region defaults to US. Each call returns up to 20 completions in the order TikTok Shop suggests them."
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "templateVersion": "2.0.0",
+  "kind": "platform",
+  "platform": "tiktok-shop",
+  "endpointCount": 9,
+  "endpoints": [
+    "tiktok-shop/search",
+    "tiktok-shop/products",
+    "tiktok-shop/product",
+    "tiktok-shop/product-reviews",
+    "tiktok-shop/user-showcase",
+    "tiktok-shop/hot-products",
+    "tiktok-shop/categories",
+    "tiktok-shop/category-products",
+    "tiktok-shop/search-suggestions"
+  ],
+  "landingPage": "https://socq.ai/apis/tiktok-shop",
+  "docsPage": "https://docs.socq.ai/api-manual/tiktok-shop/overview",
+  "generatedFrom": "SocQAPI/socq-example-template"
+}
